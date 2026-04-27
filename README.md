@@ -1,39 +1,83 @@
 # MV Audio Downloader
 
-This is a simple console application written in C# for downloading audio files from a given URL using the HtmlAgilityPack and HttpClient libraries.
+[![.NET](https://img.shields.io/badge/.NET-6.0%2B-blue)](https://dotnet.microsoft.com/download)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-## How to Use
+A cross-platform CLI application that scrapes and downloads audio files from web URLs using a menu-driven console interface.
 
-1. Clone the repository or download the source code files.
-2. Compile the code using any C# compiler.
-3. Run the compiled executable file (e.g., `MVAudioDownloader.exe`).
-4. Follow the instructions provided by the application.
+## Features
 
-## Functionality
+- HTML audio scraping from web pages
+- Batch audio file downloads
+- Interactive console menu UI
+- Clean Architecture design
+- URL validation and file name sanitization
 
-The application presents a menu with the following options:
+## Prerequisites
 
-1. **Search Audios**: Allows the user to paste a URL containing audio files to download.
-2. **Exit**: Exits the application.
+- [.NET 6.0+ SDK](https://dotnet.microsoft.com/download)
 
-Upon selecting the "Search Audios" option, the application prompts the user to paste a URL. It then searches for `<audio>` tags in the HTML content of the provided URL, extracts the `src` attribute from each `<audio>` tag, and downloads the corresponding audio files to a temporary directory. After downloading, it opens the directory containing the downloaded files using the default file explorer.
+## Building & Running
 
-## Dependencies
+```bash
+dotnet run
+```
 
-- [HtmlAgilityPack](https://html-agility-pack.net/)
-- [System.Diagnostics](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics?view=net-6.0)
-- [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io?view=net-6.0)
-- [System.Net.Http](https://docs.microsoft.com/en-us/dotnet/api/system.net.http?view=net-6.0)
+## Architecture
 
-## Notes
+```
+┌─────────────────────────────────────────┐
+│            Presentation                  │
+│         (Menu / Console UI)             │
+└─────────────────┬───────────────────────┘
+                   │
+┌─────────────────┴───────────────────────┐
+│              Application                │
+│          (Use Cases / DTOs)            │
+└─────────────────┬───────────────────────┘
+                   │
+┌─────────────────┴───────────────────────┐
+│               Domain                   │
+│      (Entities / Interfaces)            │
+└─────────────────────────────────────────┘
+                   │
+┌─────────────────┴───────────────────────┐
+│            Infrastructure              │
+│   (HtmlAudioScraper, FileDownloader)  │
+└───────────────────────────────────────┘
+```
 
-- This application may not support all types of audio files or URLs.
-- Error handling is implemented to catch and display any exceptions that may occur during the download process.
+## Project Structure
 
-## Contribution
+```
+src/
+├── AudioDownloader.Application/     # Use cases and DTOs
+│   ├── DTOs/
+│   └── UseCases/
+├── AudioDownloader.Domain/        # Core business logic
+│   ├── Entities/
+│   └── Interfaces/
+├── AudioDownloader.Infrastructure/  # External services
+│   └── Services/
+└── AudioDownloader.Presentation/ # Console UI
+    └── Menu/
+```
 
-Feel free to contribute to this project by opening issues or pull requests.
+## Usage
+
+1. Run the application with `dotnet run`
+2. Select option "1" to search and download audios
+3. Enter the URL containing audio files
+4. Audio files will be downloaded to your temp directory
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
