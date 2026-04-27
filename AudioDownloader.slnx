@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AudioDownloader.Application/AudioDownloader.Application.csproj" />
+    <Project Path="src/AudioDownloader.Domain/AudioDownloader.Domain.csproj" />
+    <Project Path="src/AudioDownloader.Infrastructure/AudioDownloader.Infrastructure.csproj" />
+    <Project Path="src/AudioDownloader.Presentation/AudioDownloader.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AudioDownloader.Infrastructure.Tests/AudioDownloader.Infrastructure.Tests.csproj" />
+  </Folder>
+</Solution>
